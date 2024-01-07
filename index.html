@@ -13,7 +13,7 @@
         src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
 </head>
-<body>
+<body class="bg-cyan-200 flex h-screen  justify-center">
 
     <main
         x-data="{
@@ -26,19 +26,40 @@
                 })
             }
         }"
+        class="m-5"
     >
-        <form>
-            <input type="text" placeholder="Activity name" x-model="name"/>
+        <form class="w-[400px] flex justify-center" x-data="{ name: '' }">
+            <input
+                type="text"
+                placeholder="Activity name"
+                x-model="name"
+                class="p-2 rounded mr-2 text-slate-800"
+            />
 
-            <button x-on:click.prevent="createActivity(name)">Create</button>
+            <button
+                x-on:click.prevent="createActivity(name); name = ''"
+                class="p-2 bg-white rounded"
+            >
+                Create
+            </button>
         </form>
 
-        <section>
+        <section class="mt-5">
             <template x-for="activity in activities" :key="activity.id">
-                <article>
+                <article class="w-[400px] flex bg-white rounded border border-shadow p-3">
 
-                    <input type="checkbox" x-model="activity.did">
-                    <h2 x-text="activity.name"></h2>
+                    <input
+                        type="checkbox"
+                        class="mr-2"
+                        x-model="activity.did"
+                    >
+                    <h2
+                        x-text="activity.name"
+                        x-bind:class="{
+                            'line-through': activity.did,
+                            'text-slate-400': activity.did
+                        }"
+                    ></h2>
 
                 </article>
             </template>
