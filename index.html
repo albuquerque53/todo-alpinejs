@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities</title>
+
+    <!-- TailwindCSS import -->
+    <script defer src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AlpineJS import -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+
+    <main
+        x-data="{
+            activities: [],
+            createActivity(name) {
+                this.activities.push({
+                    id: Math.random().toString(16).slice(2),
+                    did: false,
+                    name: name
+                })
+            }
+        }"
+    >
+
+        <form>
+            <input type="text" placeholder="Activity name" x-model="name"/>
+
+            <button x-on:click.prevent="createActivity(name)">Create</button>
+        </form>
+
+        <section>
+            <template x-for="activity in activities" :key="activity.id">
+                <article>
+
+                    <input type="checkbox" x-model="activity.did">
+                    <h2 x-text="activity.name"></h2>
+
+                </article>
+            </template>
+        </section>
+
+    </main>
+        
+</body>
+</html>
