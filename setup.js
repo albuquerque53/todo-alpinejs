@@ -21,15 +21,15 @@ function setup() {
         createActivity() {
             this.activities.push({
                 id: Math.random().toString(16).slice(2),
-                did: false,
+                completed: false,
                 name: this.name,
                 date: this.date
             })
         },
         
-        filterActivities(did) {
+        filterActivities(completed) {
             return this.activities.filter(
-                activity => activity.did == did
+                activity => activity.completed == completed
             )
         }
     }

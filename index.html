@@ -51,28 +51,28 @@
             <template x-for="activity in filterActivities(false)" :key="activity.id">
                 <article
                     class="w-[500px] flex bg-white rounded border border-shadow p-3 cursor-pointer"
-                    x-on:click="activity.did = ! activity.did"
+                    x-on:click="activity.completed = ! activity.did"
                 >
 
                     <input
                         type="checkbox"
                         class="mr-2 flex-none"
-                        x-model="activity.did"
+                        x-model="activity.completed"
                     >
                     <h2
                         x-text="activity.name"
                         class="flex-1"
                         x-bind:class="{
-                            'line-through': activity.did,
-                            'text-slate-400': activity.did
+                            'line-through': activity.completed,
+                            'text-slate-400': activity.completed
                         }"
                     ></h2>
                     <span
                         x-text="activity.date"
                         class="text-sm align-self-end"
                         x-bind:class="{
-                            'line-through': activity.did,
-                            'text-slate-400': activity.did
+                            'line-through': activity.completed,
+                            'text-slate-400': activity.completed
                         }"
                     ></span>
 
@@ -102,22 +102,22 @@
                     <input
                         type="checkbox"
                         class="mr-2 flex-none"
-                        x-model="activity.did"
+                        x-model="activity.completed"
                     >
                     <h2
                         x-text="activity.name"
                         class="flex-1"
                         x-bind:class="{
-                            'line-through': activity.did,
-                            'text-slate-400': activity.did
+                            'line-through': activity.completed,
+                            'text-slate-400': activity.completed
                         }"
                     ></h2>
                     <span
                         x-text="activity.date"
                         class="text-sm align-self-end"
                         x-bind:class="{
-                            'line-through': activity.did,
-                            'text-slate-400': activity.did
+                            'line-through': activity.completed,
+                            'text-slate-400': activity.completed
                         }"
                     ></span>
 
