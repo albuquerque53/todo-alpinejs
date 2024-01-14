@@ -8,6 +8,9 @@
     <!-- TailwindCSS import -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+     
     <!-- Alpine Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -45,10 +48,55 @@
         </form>
 
         <section class="mt-5">
-            <template x-for="activity in activities" :key="activity.id">
+            <template x-for="activity in filterActivities(false)" :key="activity.id">
                 <article
                     class="w-[500px] flex bg-white rounded border border-shadow p-3 cursor-pointer"
                     x-on:click="activity.did = ! activity.did"
+                >
+
+                    <input
+                        type="checkbox"
+                        class="mr-2 flex-none"
+                        x-model="activity.did"
+                    >
+                    <h2
+                        x-text="activity.name"
+                        class="flex-1"
+                        x-bind:class="{
+                            'line-through': activity.did,
+                            'text-slate-400': activity.did
+                        }"
+                    ></h2>
+                    <span
+                        x-text="activity.date"
+                        class="text-sm align-self-end"
+                        x-bind:class="{
+                            'line-through': activity.did,
+                            'text-slate-400': activity.did
+                        }"
+                    ></span>
+
+                </article>
+            </template>
+        </section>
+
+        <section class="mt-5" x-data="{ expanded: false }">
+
+            <header class="cursor-pointer flex flex-row mb-3" @click="expanded = ! expanded">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 m-1">
+                    <path x-show="expanded" stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    <path x-show="! expanded" stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+
+
+                <p>Toggle completed</p>
+            </header>
+
+            <template x-for="activity in filterActivities(true)" :key="activity.id">
+                <article
+                    class="w-[500px] flex bg-white rounded border border-shadow p-3 cursor-pointer"
+                    x-show="expanded"
+                    x-collapse
                 >
 
                     <input

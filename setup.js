@@ -27,5 +27,10 @@ function setup() {
             })
         },
         
+        filterActivities(did) {
+            return this.activities.filter(
+                activity => activity.did == did
+            )
+        }
     }
 }
